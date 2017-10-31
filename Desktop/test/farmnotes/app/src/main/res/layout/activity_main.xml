@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="600dp"
+        android:layout_height="500dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fn4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="121dp"
+        android:text="事業者を探す"
+        android:textSize="35dp"
+        android:onClick="search"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="アプリの終了"
+        android:textSize="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="19dp"
+        android:onClick="tofin"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="受発注状況"
+        android:textSize="40dp"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button2"
+        android:onClick="now"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="プロフィール入力"
+        android:textSize="30dp"
+        android:onClick="prof"/>
+
+</RelativeLayout>

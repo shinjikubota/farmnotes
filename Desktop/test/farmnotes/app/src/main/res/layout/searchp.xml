@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="600dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="48dp"
+        android:text="電話番号とパスワードを入力して下さい"
+        android:textSize="30dp"
+        android:layout_alignParentLeft="true" />
+
+
+    <EditText
+        android:id="@+id/editT"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="45dp"
+        android:layout_toEndOf="@+id/textView7"
+        android:layout_toRightOf="@+id/textView7"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="**********"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/editT2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:onClick="tsugi"
+        android:text="次へ"
+        android:textSize="40dp" />
+
+
+    <EditText
+        android:id="@+id/editT2"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:layout_alignBaseline="@+id/textView8"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignLeft="@+id/editT"
+        android:layout_alignStart="@+id/editT"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="**************"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/editT"
+        android:layout_alignBottom="@+id/editT"
+        android:layout_alignParentStart="true"
+        android:text="電話番号"
+        android:textSize="45dp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editT"
+        android:layout_marginTop="40dp"
+        android:text="パスワード"
+        android:textSize="45dp" />
+
+
+
+
+</RelativeLayout>
