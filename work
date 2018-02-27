@@ -1,0 +1,427 @@
+//ワーク１java
+
+package com.example.shinji_kubota.test1;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+
+//ワーク１レイアウト
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Welcome scmlab!"
+        android:textSize="40dp"
+        android:textColor="#FF0000"
+        android:background="@mipmap/ic_launcher"
+        android:gravity="center"/>
+
+</LinearLayout>
+
+
+//ワーク２java1
+
+package com.example.shinji_kubota.test2;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void sub(View v) {
+
+        Intent intent = new Intent(getApplication(),SubActivity.class);
+        startActivity(intent);
+
+    }
+
+
+
+}
+
+//ワーク２java2
+
+package com.example.shinji_kubota.test2;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+/**
+ * Created by shinji_kubota on 2018/02/26.
+ */
+
+public class SubActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sub);
+    }
+}
+
+
+
+//ワーク２レイアウト1
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+
+    <Button
+        android:id="@+id/sub"
+        android:onClick="sub"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:text="画面遷移"
+        android:textSize="40dp" />
+
+
+</LinearLayout>
+
+
+//ワーク２レイアウト2
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Welcome scmlab!"
+        android:textSize="40dp"
+        android:textColor="#FF0000"
+        android:background="@mipmap/ic_launcher"
+        android:gravity="center"/>
+
+</LinearLayout>
+
+
+
+//ワーク3java1
+
+package com.example.shinji_kubota.test3;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void act1(View V){
+
+        Intent intent = new Intent(getApplication(),Activity1.class);
+        startActivity(intent);
+
+    }
+
+
+    public void act2(View V){
+
+        Intent intent = new Intent(getApplication(),Activity2.class);
+        startActivity(intent);
+
+    }
+
+
+}
+
+
+
+//ワーク3java2
+
+package com.example.shinji_kubota.test3;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+
+
+
+
+/**
+ * Created by shinji_kubota on 2018/02/26.
+ */
+
+public class Activity1 extends AppCompatActivity {
+
+
+    EditText editText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity1);
+
+
+        editText = (EditText) findViewById(R.id.et);
+
+    }
+
+
+
+    public void send(View v) {
+
+
+            String text = editText.getText().toString();
+
+
+            //画面遷移
+            Intent intent = new Intent(getApplication(), MainActivity.class);
+            startActivity(intent);
+
+
+            //データ送信
+            AsyncHttpClient client = new AsyncHttpClient();
+            RequestParams params = new RequestParams();
+            params.put("a", text);
+
+
+            String url = "http://131.113.80.160/testPOST.php";
+
+            client.post(url, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int i, cz.msebera.android.httpclient.Header[] headers, byte[] bytes) {
+                    pop();
+                }
+                @Override
+                public void onFailure(int i, cz.msebera.android.httpclient.Header[] headers, byte[] bytes, Throwable throwable) {
+                    pop2();
+                }
+
+            });
+
+
+    }
+
+
+
+
+    //データ送信成功のポップアップ！
+    private void pop() {
+        Toast toast = Toast.makeText(this, "-----送信成功！-----", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+
+    //データ送信失敗のポップアップ
+    private void pop2() {
+        Toast toast = Toast.makeText(this, "-----※送信失敗-----\n通信環境を確認してください", Toast.LENGTH_SHORT);
+        toast.show();
+
+    }
+
+}
+
+
+//ワーク3java3
+
+package com.example.shinji_kubota.test3;
+
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import cz.msebera.android.httpclient.Header;
+
+/**
+ * Created by shinji_kubota on 2018/02/26.
+ */
+
+public class Activity2 extends AppCompatActivity {
+
+    String url = "http://131.113.80.160/testGET.php";
+
+    ListView listView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity2);
+
+        listView = (ListView) findViewById(R.id.List1);
+        final ArrayAdapter<String> array = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(array);
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        String sql = "SELECT * FROM test01";
+
+        params.put("a",sql);
+
+        client.get(url, params, new JsonHttpResponseHandler() {
+
+
+            //JSONArray,int statusCode, Header headers[]がポイント！！
+            @TargetApi(Build.VERSION_CODES.KITKAT)
+            public void onSuccess(int statusCode, Header headers[], JSONArray json) {
+
+
+                JSONArray jsarr = null;
+                try {
+                    jsarr = new JSONArray(json.toString());
+
+                    for (int i = 0; i < jsarr.length(); i++) {
+
+//                        JSONObject jsonObject = jsarr.getJSONObject(i);
+
+                        array.add(jsarr.getJSONObject(i).getString("A"));
+
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        });
+
+    }
+
+
+
+}
+
+
+//ワーク3レイアウト1
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+
+    <Button
+        android:id="@+id/act1"
+        android:onClick="act1"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:text="画面1へ"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/act2"
+        android:onClick="act2"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:text="画面2へ"
+        android:textSize="40dp" />
+
+
+</LinearLayout>
+
+
+
+//ワーク3レイアウト2
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="POSTする単語の入力"
+            android:layout_weight="1"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="送信"
+            android:onClick="send"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+//ワーク3レイアウト3
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ListView
+        android:id="@+id/List1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+
